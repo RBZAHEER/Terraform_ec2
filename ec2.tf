@@ -61,14 +61,14 @@ resource "aws_security_group" "my_security" {
 
 #instance
 resource "aws_instance" "my_instance" {
-  ami = "ami-0e449927258d45bc4"
-  instance_type = "t2.micro"
+  ami = var.ec2_ami_id
+  instance_type = var.ec2_instance_type
   key_name = aws_key_pair.my_key.key_name
   security_groups =[aws_security_group.my_security.name] 
   
   root_block_device {
-    volume_size = 10
-    volume_type = "gp3"
+    volume_size = var.ec2_volume_size
+    volume_type = var.ec2_volume_type
     tags = {
       Name: "Terra_automated"
     }
