@@ -1,1 +1,1 @@
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM+PKeoKuEIwvafrUJxOpVlYscqYbeXLVidoWXQwCOp7 
+use cmd ssh-genkey to generate the public ssh key
