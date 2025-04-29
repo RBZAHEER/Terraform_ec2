@@ -65,12 +65,16 @@ resource "aws_instance" "my_instance" {
   instance_type = var.ec2_instance_type
   key_name = aws_key_pair.my_key.key_name
   security_groups =[aws_security_group.my_security.name] 
-  
+  user_data = file("nginx.sh")
+  tags = {
+    Name = "Terraform_automated"
+  }
   root_block_device {
     volume_size = var.ec2_volume_size
     volume_type = var.ec2_volume_type
     tags = {
-      Name: "Terra_automated"
+      Name: "terraform"
     }
   }
+
 }
