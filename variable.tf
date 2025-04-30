@@ -18,3 +18,7 @@ variable "ec2_volume_type" {
   type = string
 }
 
+variable "env" {
+  default = "prd"
+  type = string
+}
