@@ -66,7 +66,7 @@ resource "aws_instance" "my_instance" {
     micro_server1 = "t2.micro"
     micro_server2 = "t2.micro"
   })
-  
+
   ami = var.ec2_ami_id
   instance_type = each.value
   key_name = aws_key_pair.my_key.key_name
@@ -76,7 +76,8 @@ resource "aws_instance" "my_instance" {
     Name = each.key
   }
   root_block_device {
-    volume_size = var.ec2_volume_size
+    # Added conditional statement like if var.env is "prd" then the volume size would be 20 Gib but if env is dev it should be default set in ec2_volume_size
+    volume_size = var.env == "prd" ? 20 : var.ec2_volume_size
     volume_type = var.ec2_volume_type
     tags = {
       Name: "terraform"
